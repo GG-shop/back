@@ -11,22 +11,24 @@ body:
         ## 📌 Task Overview
         어떤 서비스를 개발하는지, 그리고 어떤 기능을 담당하는지 간략하게 설명해주세요.
 
-
-- type: markdown
-attributes:
-value: | 
-###  To-Do List 이슈 해결을 위해 다음 작업들이 수행되어야 합니다: 
-- API 명세서 작성/업데이트 - 도메인 엔티티 및 Repository 구현
-- 서비스 로직(Business Logic) 개발
-- 단위 테스트(JUnit5) 및 통합 테스트 완료
-- API 문서화 (Swagger/RestDocs)
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: ✅ To-Do List
+      description: 이슈 해결을 위해 수행해야 할 작업들을 체크하세요.
+      options:
+        - label: API 명세서 작성 및 업데이트
+        - label: 도메인 엔티티 및 Repository 구현
+        - label: 서비스 로직(Business Logic) 개발
+        - label: 단위 테스트(JUnit5) 및 통합 테스트 완료
+        - label: API 문서화 (Swagger/RestDocs)
 
   - type: textarea
     id: api-details
     attributes:
       label: 🔗 Controller 설계/구현
       placeholder: |
-        - Method: POST / GET 
+        - Method: POST / GET / PATCH / DELETE
         - Endpoint: /api/v1/resource
         - Request Body / Query Params 예시를 적어주세요.
 
