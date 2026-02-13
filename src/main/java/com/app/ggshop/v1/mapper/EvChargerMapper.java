@@ -1,7 +1,10 @@
 package com.app.ggshop.v1.mapper;
 
+import com.app.ggshop.v1.common.pagination.Criteria;
 import com.app.ggshop.v1.domain.EvChargerVO;
+import com.app.ggshop.v1.dto.EvChargerDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,4 +16,15 @@ public interface EvChargerMapper {
 
     // companyId 상관없이 전체 조회
     List<EvChargerVO> selectAllEvChargers();
+
+//    public int selectTotal();
+
+    public List<EvChargerDTO> selectAll(Criteria criteria);
+
+//    List<EvChargerVO> selectAll(
+//            @Param("count") int count,
+//            @Param("offset") int offset
+//    );
+
+    int selectTotalCount();
 }

@@ -22,6 +22,7 @@ public class EvChargerDTO {
     private Status evChargerMod;
     private Long companyId;
 
+
     public EvChargerVO toVO() {
         return EvChargerVO.builder()
                 .evChargerUid(stationNumber)

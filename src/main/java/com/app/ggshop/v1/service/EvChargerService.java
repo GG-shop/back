@@ -1,15 +1,19 @@
 package com.app.ggshop.v1.service;
 
 import com.app.ggshop.v1.common.enumeration.Status;
+import com.app.ggshop.v1.common.pagination.Criteria;
 import com.app.ggshop.v1.domain.EvChargerVO;
 import com.app.ggshop.v1.dto.EvChargerDTO;
+import com.app.ggshop.v1.dto.PostWithPagingDTO;
 import com.app.ggshop.v1.repository.EvChargerDAO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.thymeleaf.util.DateUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -54,5 +58,50 @@ public class EvChargerService {
 
         return chargerList;
     }
+
+//    public PostWithPagingDTO list(int page){
+//
+//        PostWithPagingDTO postWithPagingDTO = new PostWithPagingDTO();
+//
+//        Criteria criteria = new Criteria(page, evChargerDAO.findTotal());
+//
+//        List<EvChargerDTO> evCharger = evChargerDAO.findAll(criteria);
+////
+////        criteria.setHasMore(posts.size() > criteria.getRowCount());
+////        postWithPagingDTO.setCriteria(criteria);
+////
+////        if(criteria.isHasMore()){
+////            posts.remove(posts.size() - 1);
+////        }
+////
+////
+////        postWithPagingDTO.setPosts(posts);
+//
+//        return postWithPagingDTO;
+//    }
+
+// 목록
+    public PostWithPagingDTO list(int page){
+        PostWithPagingDTO postWithPagingDTO = new PostWithPagingDTO();
+        int total = evChargerDAO.findTotal();
+
+        Criteria criteria = new Criteria(page, total);
+
+        List<EvChargerDTO> list = evChargerDAO.findAll(criteria);
+
+        criteria.setHasMore(list.size() > criteria.getRowCount());
+        postWithPagingDTO.setCriteria(criteria);
+
+        if(criteria.isHasMore()){
+            list.remove(list.size() - 1);
+        }
+
+
+        postWithPagingDTO.setEvChargerList(list);
+
+        return postWithPagingDTO;
+    }
+
+
 
 }

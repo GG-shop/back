@@ -61,5 +61,29 @@
     </select>
 
 
+    <select id="selectAll">
+        SELECT
+            id,
+            ev_charger_uid,
+            ev_charger_address,
+            ev_charger_content,
+            ev_charger_status,
+            ev_charger_mod,
+            setup_date,
+            created_date,
+            updated_date,
+            company_id
+        FROM tbl_ev_charger
+        ORDER BY id DESC
+        LIMIT #{rowCount} OFFSET #{offset}
+    </select>
+
+
+    <select id="selectTotalCount">
+        select count(*) from tbl_ev_charger
+    </select>
+
+
+
 
 </mapper>
